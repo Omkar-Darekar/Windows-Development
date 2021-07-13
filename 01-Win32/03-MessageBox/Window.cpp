@@ -68,11 +68,20 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam) {
 	//Code
+	int iNum1, iNum2, iNum3;
+	TCHAR tStr[255];
 	switch (iMsg) {
+	case WM_CREATE:
+		iNum1 = 305;
+		iNum2 = 205;
+		iNum3 = iNum1 + iNum2;
+		wsprintf(tStr, TEXT("Addition of %d and %d is %d"), iNum1, iNum2, iNum3);
+		MessageBox(hwnd, tStr, TEXT("Addition Result"), MB_OK);
+		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
-
+	
 	default:
 		break;
 	}

@@ -30,7 +30,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 	wndclass.hInstance = hInstance;
 	wndclass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
 	wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
-	wndclass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
+	wndclass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
 	wndclass.lpszClassName = szAppName;
 	wndclass.lpszMenuName = NULL;
 	wndclass.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
@@ -68,11 +68,23 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam) {
 	//Code
+	HDC hdc;
+	RECT rc;
+	PAINTSTRUCT ps;
+	TCHAR str[] = TEXT("Hello World !!!");
 	switch (iMsg) {
+	case WM_PAINT:
+		GetClientRect(hwnd, &rc);
+		hdc = BeginPaint(hwnd, &ps);
+		SetBkColor(hdc, RGB(0, 0, 0));
+		SetTextColor(hdc, RGB(0, 255, 0));
+		DrawText(hdc, str, -1, &rc, DT_SINGLELINE | DT_CENTER | DT_VCENTER);
+		EndPaint(hwnd, &ps);
+		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
-
+	
 	default:
 		break;
 	}

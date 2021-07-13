@@ -69,10 +69,22 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam) {
 	//Code
 	switch (iMsg) {
+	case WM_CREATE:
+		MessageBox(hwnd, TEXT("WM_CREATE is arrived"), TEXT("Message"), MB_OK);
+		break;
+	case WM_LBUTTONDOWN:
+		MessageBox(hwnd, TEXT("Left button is pressed"), TEXT("Message"), MB_OK);
+		break;
+	case WM_RBUTTONDOWN:
+		MessageBox(hwnd, TEXT("Right button pressed"), TEXT("Message"), MB_OK);
+		break;
+	case WM_KEYDOWN:
+		MessageBox(hwnd, TEXT("A Key is pressed"), TEXT("Message"), MB_OK);
+		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
-
+	
 	default:
 		break;
 	}
