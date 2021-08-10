@@ -1,13 +1,11 @@
 /*
 Command to run this code -> Open Visual studio Developer Command Prompt and go to Windows.cpp file location and type following command - 
 1. cl.exe /c /EHsc Windows.cpp
-2. link.exe Windows.obj user32.lib gdi32.lib
+2. link.exe Windows.obj user32.lib gdi32.lib MyMath.lib /SUBSYSTEM:windows
 */
 
 #include <windows.h>
 #include "MyMath.h"
-#pragma comment(lib, "MyMath.lib")
-
 
 //Global Function declaration
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);

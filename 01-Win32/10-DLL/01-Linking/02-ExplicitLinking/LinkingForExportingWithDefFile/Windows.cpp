@@ -5,9 +5,7 @@ Command to run this code -> Open Visual studio Developer Command Prompt and go t
 */
 
 #include <windows.h>
-#include "MyMath.h"
-#pragma comment(lib, "MyMath.lib")
-
+//#include "MyMath.h"
 
 //Global Function declaration
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
@@ -70,26 +68,36 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 }
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam) {
+	//Local Variable
+	HMODULE hLib = NULL;
+	typedef int (*PMAKECUBEFUNCTION)(int);
+	PMAKECUBEFUNCTION pMakeCube = NULL;
 	int num1, num2;
 	TCHAR str[255];
+
 	//Code
 	switch (iMsg) {
 	case WM_CREATE:
-		num1 = 10;
-		num2 = MakeCube(num1);
+		hLib = LoadLibrary(TEXT("MyMath.dll"));
+		if (hLib == NULL) {
+			MessageBox(hwnd, TEXT("LoadLibrary Failed"), TEXT("ERROR"), MB_OK);
+			DestroyWindow(hwnd);
+		}
+		pMakeCube = (PMAKECUBEFUNCTION) GetProcAddress(hLib, "MakeCube");
+		if (pMakeCube == NULL) {
+			MessageBox(hwnd, TEXT("Make Cube function cannot obtained"), TEXT("ERROR"), MB_OK);
+			DestroyWindow(hwnd);
+		}
+		num1 = 15;
+		num2 = pMakeCube(num1);
 		wsprintf(str, TEXT("Cube of %d is %d"), num1, num2);
-		MessageBox(hwnd, str, TEXT("SQUARE"), MB_OK);
-		break;
-	case WM_LBUTTONDOWN:
-		num1 = 50;
-		num2 = MakeCube(num1);
-		wsprintf(str, TEXT("Cube of %d is %d"), num1, num2);
-		MessageBox(hwnd, str, TEXT("LBUTTONDOWN SQUARE"), MB_OK);
+		MessageBox(hwnd, str, TEXT("CUBE FUNCTION"), MB_OK);
+		FreeLibrary(hLib);
+		DestroyWindow(hwnd); //Closing application
 		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
-
 	default:
 		break;
 	}

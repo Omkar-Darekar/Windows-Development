@@ -1,0 +1,4 @@
+LIBRARY MyMath.dll
+EXPORTS
+		MakeCube
+
