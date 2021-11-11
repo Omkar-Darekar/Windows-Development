@@ -1,0 +1,4 @@
+LIBRARY AutomationServerWithRegFile.dll
+EXPORTS
+		DllGetClassObject PRIVATE
+		DllCanUnloadNow PRIVATE

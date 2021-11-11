@@ -1,0 +1,2 @@
+1. cd C:\Windows\System32
+2. regsvr32.exe AutomationProxyStub.dll

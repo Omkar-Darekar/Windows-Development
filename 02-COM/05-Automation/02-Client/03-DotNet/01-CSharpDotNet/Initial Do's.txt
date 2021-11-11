@@ -1,0 +1,7 @@
+Run in command prompt
+
+Run this command to create .dll for .Net server.
+
+
+ => tlbimp.exe C:\Windows\System32\{TypeLibraryName} /out:.\AutomationServerTlbForDotNet.dll       <= 64 bit
+    tlbimp.exe C:\Windows\SysWow64\{TypeLibraryName} /out:.\AutomationServerTlbForDotNet.dll		<=32 bit

@@ -1,0 +1,45 @@
+
+// To compile 
+// 1. midl.exe /h AutomationProxyStubHeader.h /iid AutomationProxyStubGuids.c /dlldata AutomationProxyStubDllData.c /proxy AutomationProxyStub.c AutomationServerTypeLib.idl
+// To Create TypeLib DLL
+// 2. cl.exe /c /EHsc /D WIN32  /D REGISTER_PROXY_DLL AutomationProxyStubGuids.c AutomationProxyStubDllData.c AutomationProxyStub.c
+// 3. link.exe AutomationProxyStubGuids.obj AutomationProxyStubDllData.obj AutomationProxyStub.obj /DLL /DEF:AutomationProxyStub.def user32.lib gdi32.lib ole32.lib oleaut32.lib rpcns4.lib rpcrt4.lib advapi32.lib
+
+
+import "unknwn.idl";
+//IMyMath Interface
+[
+	object,
+	uuid(BAE60D89-6CCF-4D45-AA76-341B5C3A6599), //IID of IMyMath from .h file
+	helpstring("IMyMath Interface"),
+	pointer_default(unique),
+	dual,
+	oleautomation
+]
+interface IMyMath :IDispatch
+{
+	import "oaidl.idl";
+	HRESULT SumOfTwoIntegers([in]int, [in]int, [out, retval]int *);
+	HRESULT SubtractionOfTwoIntegers([in]int, [in]int, [out, retval]int *);
+};
+
+//The actual TypeLib Related Code
+[
+	uuid(1BCB8B43-75F4-4C33-ACAE-ECE695567A54), //LIBID of Type Library
+	version(1.0), //major version number . minor version number
+	helpstring("MyMath Automation component's Type Library")
+]
+library AutomationServerWithRegFileTypeLib
+{
+	importlib("stdole32.tlb");
+	//component code
+	[
+		uuid(ED97BB7B-4725-49A3-BA52-2786F39BEBF6), //CLSID Of MyMath Component from .h file
+		helpstring("MyMathAutomation Component Class")
+	]
+	coclass CMyMath
+	{
+		[default]interface IMyMath;
+	};
+}
+
