@@ -1,0 +1,53 @@
+﻿// Created by Microsoft (R) C/C++ Compiler Version 14.28.29914.0 (b05a1a3c).
+//
+// C:\MyProjects\Windows-Development\02-COM\05-Automation\03-DotNetServerAndComClient\dotnetserver.tlh
+//
+// C++ source equivalent of type library DotNetServer.tlb
+// compiler-generated file created 11/24/21 at 00:22:13 - DO NOT EDIT!
+
+#pragma once
+#pragma pack(push, 8)
+
+#include <comdef.h>
+
+//
+// Forward references and typedefs
+//
+
+struct __declspec(uuid("a7244b78-6fe9-39c3-a48b-a092302fbc5d"))
+/* LIBID */ __DotNetServer;
+struct /* coclass */ DotNetServer;
+struct __declspec(uuid("f4c843d4-d9df-38c4-94ac-a644d4a25a98"))
+/* dual interface */ _DotNetServer;
+
+//
+// Smart pointer typedef declarations
+//
+
+_COM_SMARTPTR_TYPEDEF(_DotNetServer, __uuidof(_DotNetServer));
+
+//
+// Type library items
+//
+
+struct __declspec(uuid("d4da5d84-107f-3a24-a381-d8e0a32f4e0a"))
+DotNetServer;
+    // [ default ] interface _DotNetServer
+    // interface _Object
+
+struct __declspec(uuid("f4c843d4-d9df-38c4-94ac-a644d4a25a98"))
+_DotNetServer : IDispatch
+{};
+
+//
+// Named GUID constants initializations
+//
+
+extern "C" const GUID __declspec(selectany) LIBID_DotNetServer =
+    {0xa7244b78,0x6fe9,0x39c3,{0xa4,0x8b,0xa0,0x92,0x30,0x2f,0xbc,0x5d}};
+extern "C" const GUID __declspec(selectany) CLSID_DotNetServer =
+    {0xd4da5d84,0x107f,0x3a24,{0xa3,0x81,0xd8,0xe0,0xa3,0x2f,0x4e,0x0a}};
+extern "C" const GUID __declspec(selectany) IID__DotNetServer =
+    {0xf4c843d4,0xd9df,0x38c4,{0x94,0xac,0xa6,0x44,0xd4,0xa2,0x5a,0x98}};
+
+#pragma pack(pop)
