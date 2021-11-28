@@ -1,0 +1,4 @@
+LIBRARY MyDLLServer
+EXPORTS
+		SumOfIntegers
+
